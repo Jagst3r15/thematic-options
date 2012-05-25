@@ -31,11 +31,10 @@ function of_get_option($name, $default = false) {
  * Removes the default Thematic options panel
  */
 
-function remove_thematic_panel() {
-  remove_action( 'admin_menu' , 'mytheme_add_admin' );
+function childtheme_remove_theme_options(){
+	remove_action( 'admin_menu', 'thematic_opt_add_page' );
 }
-
-add_action('init', 'remove_thematic_panel');
+add_action('init','childtheme_remove_theme_options');
 
 /* 
  * Theme header output - wp_head()
