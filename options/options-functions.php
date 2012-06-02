@@ -34,7 +34,8 @@ function of_get_option($name, $default = false) {
 function childtheme_remove_theme_options(){
 	remove_action( 'admin_menu', 'thematic_opt_add_page' );
 }
-add_action('init','childtheme_remove_theme_options');
+
+add_action('admin_menu','childtheme_remove_theme_options', 9);
 
 /* 
  * Theme header output - wp_head()
@@ -132,9 +133,6 @@ function thematicoptions_logo() {
  * Filter footer text
  */
 
-function thematicoptions_footer($thm_footertext) {
-	$footertext = of_get_option('footer_text');
-    return $footertext;
+function childtheme_override_siteinfo(){
+  echo do_shortcode(_(stripslashes(of_get_option('footer_text'))));
 }
-
-add_filter('thematic_footertext', 'thematicoptions_footer');
